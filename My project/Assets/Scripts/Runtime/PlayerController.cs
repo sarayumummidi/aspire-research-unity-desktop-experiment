@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public float mouseSensitivity = 0.15f;  // degrees per pixel
     public float pitchClamp       = 80f;    // degrees up/down
 
+    [Header("Arrow Key Turn")]
+    public float arrowTurnSpeed = 90f;      // degrees per second
+
     // Read by TrialManager (Step 5) to detect movement epoch onset
     public bool    IsMoving  { get; private set; }
     public Vector3 Velocity  { get; private set; }   // XZ only, world space
@@ -61,6 +64,11 @@ public class PlayerController : MonoBehaviour
         if (Gamepad.current != null)
             delta += Gamepad.current.rightStick.ReadValue() * (mouseSensitivity * 80f * Time.deltaTime);
 
+        // Arrow left/right turn the player (allows full 360° without mouse)
+        var kb = Keyboard.current;
+        float arrowYaw = (kb.rightArrowKey.isPressed ? 1f : 0f) - (kb.leftArrowKey.isPressed ? 1f : 0f);
+        delta.x += arrowYaw * arrowTurnSpeed * Time.deltaTime;
+
         // Horizontal: rotate the whole player root (affects movement direction too)
         transform.Rotate(Vector3.up, delta.x);
 
@@ -75,10 +83,10 @@ public class PlayerController : MonoBehaviour
     void HandleMovement()
     {
         var kb = Keyboard.current;
-        float h = (kb.dKey.isPressed || kb.rightArrowKey.isPressed ? 1f : 0f)
-                - (kb.aKey.isPressed || kb.leftArrowKey.isPressed  ? 1f : 0f);
-        float v = (kb.wKey.isPressed || kb.upArrowKey.isPressed    ? 1f : 0f)
-                - (kb.sKey.isPressed || kb.downArrowKey.isPressed  ? 1f : 0f);
+        // A/D strafe; arrow left/right now turn (handled in HandleMouseLook)
+        float h = (kb.dKey.isPressed ? 1f : 0f) - (kb.aKey.isPressed ? 1f : 0f);
+        float v = (kb.wKey.isPressed || kb.upArrowKey.isPressed   ? 1f : 0f)
+                - (kb.sKey.isPressed || kb.downArrowKey.isPressed ? 1f : 0f);
 
         // Left stick on gamepad, combined with keyboard input
         if (Gamepad.current != null)
