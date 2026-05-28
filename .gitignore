@@ -1,0 +1,42 @@
+# Unity generated
+Library/
+Temp/
+Logs/
+obj/
+Build/
+Builds/
+UserSettings/
+MemoryCaptures/
+
+# Unity meta files for ignored folders
+Library.meta
+Temp.meta
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+
+# Unity asset store tools
+**/Assets/AssetStoreTools*
+
+# Crash/build artifacts
+sysinfo.txt
+crashlytics-build.properties
+*.apk
+*.aab
+*.app
+*.unitypackage

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfad2efa19554e6dbe556f06bb0188c, type: 3}
+  m_Name: Arena1
+  m_EditorClassIdentifier: Assembly-CSharp::ArenaConfig
+  arenaId: 1
+  description: "Nearly open \u2014 complexity \u2248 0"
+  obstacleEdgesA: 
+  obstacleEdgesB: 
