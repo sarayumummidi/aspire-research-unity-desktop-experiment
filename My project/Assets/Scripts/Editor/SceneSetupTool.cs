@@ -17,6 +17,9 @@ public static class SceneSetupTool
 
     // ─── menu 0 ──────────────────────────────────────────────────────────────
 
+    [MenuItem("ASPIRE/0 - Switch to 3D URP", true)]
+    public static bool SwitchTo3DURP_Validate() => !Application.isPlaying;
+
     [MenuItem("ASPIRE/0 - Switch to 3D URP")]
     public static void SwitchTo3DURP()
     {
@@ -55,6 +58,9 @@ public static class SceneSetupTool
     }
 
     // ─── menu 1 ──────────────────────────────────────────────────────────────
+
+    [MenuItem("ASPIRE/1 - Build Scene", true)]
+    public static bool BuildScene_Validate() => !Application.isPlaying;
 
     [MenuItem("ASPIRE/1 - Build Scene")]
     public static void BuildScene()
@@ -167,9 +173,9 @@ public static class SceneSetupTool
         var existing = GameObject.FindWithTag("MainCamera");
         if (existing != null) Object.DestroyImmediate(existing);
 
-        // Player root: movement controller will be added here in a later step
         var player = new GameObject("Player");
         player.transform.position = Vector3.zero;
+        player.AddComponent<PlayerController>();
 
         // Camera mounted at eye height; mouse-look will be added later
         var camGO = new GameObject("Camera");
